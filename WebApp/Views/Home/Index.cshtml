@@ -1,0 +1,46 @@
+﻿@{
+    ViewData["Title"] = "Home";
+    ViewBag.Username = TempData["Username"];
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewData["Title"]</title>
+    <style>
+        .index-center-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 50vh; /* Adjusted height to leave space at the top */
+        }
+
+        .index-center-content h1 {
+            margin-bottom: 20px; /* Add some space below the title */
+        }
+
+        .index-center-content form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .index-center-content label, .index-center-content input, .index-center-content button {
+            margin-bottom: 10px; /* Add some space between elements */
+        }
+    </style>
+</head>
+
+<body>
+<div class="index-center-content">
+    <h1>Stock Viewer</h1>
+
+    <form asp-controller="Home" asp-action="Chart" method="get">
+        <label for="symbol">Enter Stock Symbol:</label>
+        <input type="text" id="symbol" name="symbol" required>
+        <button type="submit">Search</button>
+    </form>
+</div>
+</body>
+</html>

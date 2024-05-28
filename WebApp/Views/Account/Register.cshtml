@@ -1,0 +1,62 @@
+@model RegisterViewModel
+
+@{
+ViewData["Title"] = "Register Page";
+}
+<title>@ViewData["Title"]</title>
+
+<h2>Register</h2>
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { id = "registerForm" }))
+{
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        <label for="Username">Username:</label>
+        @Html.TextBoxFor(m => m.Username, new { @class = "form-control", required = "required" })
+        @Html.ValidationMessageFor(m => m.Username)
+    </div>
+
+    <div class="form-group">
+        <label for="Password">Password:</label>
+        @Html.PasswordFor(m => m.Password, new { @class = "form-control", required = "required" })
+        @Html.ValidationMessageFor(m => m.Password)
+    </div>
+
+    <div class="form-group">
+        <label for="ConfirmPassword">Confirm Password:</label>
+        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", required = "required" })
+        @Html.ValidationMessageFor(m => m.ConfirmPassword)
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.getElementById("registerForm");
+            const submitButton = document.getElementById("submitButton");
+            const password = document.getElementById("Password");
+            const confirmPassword = document.getElementById("ConfirmPassword");
+
+            form.addEventListener("input", function () {
+                if (form.checkValidity() && password.value === confirmPassword.value) {
+                    submitButton.disabled = false;
+                } else {
+                    submitButton.disabled = true;
+                }
+            });
+
+            // Add event listener to check password and confirm password match
+            confirmPassword.addEventListener("input", function () {
+                if (password.value !== confirmPassword.value) {
+                    confirmPassword.setCustomValidity("Passwords do not match");
+                } else {
+                    confirmPassword.setCustomValidity("");
+                }
+            });
+        });
+    </script>
+    
+    <button type="submit" id="submitButton" class="btn btn-primary" disabled>Register</button>
+
+    <!-- Button to navigate back to login -->
+    <a href="@Url.Action("Login", "Account")" class="btn btn-secondary">Back to Login</a>
+}

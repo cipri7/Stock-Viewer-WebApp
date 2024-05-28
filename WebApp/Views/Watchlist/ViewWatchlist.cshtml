@@ -1,0 +1,21 @@
+@model List<string>
+
+@{
+    ViewData["Title"] = "Watchlist";
+}
+
+<h1>Your Watchlist</h1>
+
+@if (Model != null && Model.Count > 0)
+{
+    <ul>
+        @foreach (var stock in Model)
+        {
+            <li>@stock</li>
+        }
+    </ul>
+}
+else
+{
+    <p>You have no stocks in your watchlist.</p>
+}

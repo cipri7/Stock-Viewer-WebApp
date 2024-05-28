@@ -1,0 +1,93 @@
+/* General styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-image: url("/Users/ciprismacbook/Documents/repos/Stock-Viewer/WebApp/richard-horvath-_nWaeTF6qo0-unsplash.jpg"); /* Your actual background image */
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    
+    
+}
+
+/* This sets up the title and the h2 according to your image */
+title, h2 {
+    text-align: center;
+    color: white;
+}
+
+/* The form itself */
+form {
+    background-color: rgba(150, 123, 182, 0.85); /* Adjust color and opacity as needed */
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 360px; /* Adjust width as needed */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Form fields styling */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    color: black;
+}
+
+/* Labels */
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Button styling */
+.btn-primary {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4B3F6B; /* Adjust the color to match your theme */
+    color: white;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+/* Secondary button */
+.btn-secondary {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #6C597A; /* Adjust the color to match your theme */
+    color: white;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+/* Text-danger class for validation messages */
+.text-danger {
+    color: #ff3860; /* or any color that will stand out against your form's background */
+}
+
+/* Optional: Add some hover effects for buttons */
+.btn-primary:hover,
+.btn-secondary:hover {
+    background-color: #3a3150; /* Use a CSS preprocessor or choose a darker color */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    body {
+        background-image: none; /* You might want to disable the background image on smaller screens */
+        background-color: #382f49; /* Use a fallback background color */
+    }
+}

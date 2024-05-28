@@ -1,0 +1,80 @@
+@model System.Text.Json.JsonElement
+
+@{
+ViewData["Title"] = ViewBag.Symbol;
+}
+
+@* <h1>@ViewBag.Symbol</h1> *@
+
+<div class="d-flex justify-content-between align-items-center">
+    <h1>@ViewBag.Symbol</h1>
+    <button class="btn btn-primary" id="addToWatchlistButton" data-stockname="@ViewBag.Symbol">Add to Watchlist</button>
+    <button class="btn btn-secondary" id="viewWatchlistButton">View Watchlist</button>
+</div>
+
+<canvas id="myChart" width="800" height="400"></canvas>
+
+<script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    
+    var dates = [];
+    var opens = [];
+    var closes = [];
+
+    @foreach (var item in Model.GetProperty("Time Series (Daily)").EnumerateObject())
+    {
+        var date = item.Name;
+        var open = item.Value.GetProperty("1. open").GetString();
+        var close = item.Value.GetProperty("4. close").GetString();
+        
+        @:dates.push('@date');
+        @:opens.push('@open');
+        @:closes.push('@close');
+    }
+    
+
+@*Display only Close Prices *@
+    var chartData = {
+        labels: dates.reverse(),
+        datasets: [{
+            label: 'Price',
+            data: closes.reverse(),
+            borderColor: 'rgba(255, 99, 132, 1)',
+            fill: false
+        }]
+    };
+
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: chartData
+    });
+
+    document.getElementById('addToWatchlistButton').addEventListener('click', function() {
+        var stockName = this.getAttribute('data-stockname'); // Retrieve stockName from button attribute
+        fetch('/Watchlist/AddToWatchlist', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: new URLSearchParams({ stockName: stockName }) // Send stockName as a URL-encoded string
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Added to watchlist!');
+                } else {
+                    alert('Failed to add to watchlist: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error adding to watchlist.');
+            });
+    });
+
+    document.getElementById('viewWatchlistButton').addEventListener('click', function() {
+        window.location.href = '/Watchlist/ViewWatchlist';
+    });
+
+
+</script>

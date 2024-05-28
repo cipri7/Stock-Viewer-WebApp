@@ -1,0 +1,41 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+/*!* Center the title and form *!*/
+/*.container {*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*  align-items: center;*/
+/*  justify-content: center;*/
+/*  height: 100vh; !* Full height of the viewport *!*/
+/*}*/
+
+/*h1 {*/
+/*  margin-bottom: 20px; !* Add some space below the title *!*/
+/*}*/
+
+/*form {*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*  align-items: center;*/
+/*}*/
+
+/*label, input, button {*/
+/*  margin-bottom: 10px; !* Add some space between elements *!*/
+/*}*/
