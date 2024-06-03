@@ -31,6 +31,7 @@ After accessing the app via a login module, the user can prompt the symbol of th
 
 ### Add to watchlist
 The user can add stocks to a watchlist and visualize it whenever wants.
+
 <img width="379" alt="Captură de ecran din 2024-05-23 la 11 45 30" src="https://github.com/cipri7/Stock-Viewer-WebApp/assets/102433321/d025ab56-453c-4f91-929c-34fefe606b62">
 
 
